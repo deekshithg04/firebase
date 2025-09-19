@@ -1,27 +1,24 @@
-
-// Import the functions you need from the SDKs you need
+// firebase.js
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-
-// Your web app's Firebase configuration
+// Firebase config with env variables
 const firebaseConfig = {
-  projectId: "skillsculptor-53ylh",
-  appId: "1:707507060238:web:501fc11de216d9a9fd465f",
-  storageBucket: "skillsculptor-53ylh.firebasestorage.app",
-  apiKey: "AIzaSyC2sw9ayBvW-jwfYFmMQi79Hl0rlYKJl4Q",
-  authDomain: "skillsculptor-53ylh.web.app",
-  measurementId: "",
-  messagingSenderId: "707507060238"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
-const db = getFirestore(app, 'default');
+const db = getFirestore(app);
 const storage = getStorage(app);
-
 
 export { app, auth, db, storage };
